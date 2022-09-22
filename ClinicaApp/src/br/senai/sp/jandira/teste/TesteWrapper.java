@@ -27,7 +27,7 @@ public class TesteWrapper {
 		especialidade.add(e1);
 		especialidade.add(e2);
 		
-		
+				
 		Especialidade e3 = new Especialidade("Fisíoterapia");
 //		e3.setNome("Fisíoterapia");
 		e3.setDescricao("Não deixa você ter dores");
