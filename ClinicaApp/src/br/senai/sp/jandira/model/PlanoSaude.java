@@ -8,6 +8,16 @@ public class PlanoSaude {
 	private String categoria;
 	private String numero;
 	private LocalDate validade;
+	private static int quantidade;
+	
+	public PlanoSaude(String operadora) {
+		this.operadora = operadora;
+		this.quantidade++;
+	}
+	
+	public PlanoSaude() {
+		this.quantidade++;
+	}
 
 	public void setOperadora(String operadora) {
 		this.operadora = operadora;
@@ -39,5 +49,9 @@ public class PlanoSaude {
 
 	public LocalDate getValidade() {
 		return validade;
+	}
+	
+	public static int getQuantidade() {
+		return quantidade;
 	}
 }

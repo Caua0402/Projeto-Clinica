@@ -17,6 +17,8 @@ public class Especialidade {
 		this.nome = nome;
 	}
 	
+	//Construtor Default/Padão
+	
 	public Especialidade() {
 		
 	}
