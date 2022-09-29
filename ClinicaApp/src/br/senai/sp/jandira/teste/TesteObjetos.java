@@ -10,77 +10,87 @@ import br.senai.sp.jandira.model.PlanoSaude;
 
 public class TesteObjetos {
 
-	public static void main(String[] args) {
-		
-		Especialidade e1 = new Especialidade("Cardiologia", "Não deixa ter um ataque do coração");
-		//e1.setNome("Cardiologia");
-		//e1.setDescricao("Não deixa ter um ataque do coração");
-		
-		Especialidade e2 = new Especialidade("Gastroenterologia");
-		e2.setNome("Gastroenterologia");
-		e2.setDescricao("Não deixa ficar com dor de barriga");
-		
-		Especialidade e4 = new Especialidade("Otorrino", "Cuida do ouvido");
-		
-		Especialidade e3 = new Especialidade();
-		e3.setNome("Qualquer coisa");
-		
-		ArrayList<Especialidade> especialdade = new ArrayList<>();
-		especialdade.add(e1);
-		especialdade.add(e2);
-		especialdade.add(e3);
-		
-		System.out.println(especialdade.size());
-		
-		//Imprimir no console o nome das especialidade
-		// que estão armazenadas no Arraylist
-		System.out.println("--------WHILE--------");
-		int i = 0;
-		while (i < especialdade.size()) {
-			System.out.println(especialdade.get(i).getNome());
-		i++;
-		}
+    public static void main(String[] args) {
 
-		//Utilização do for para iteração no Arrarylist
-		System.out.println("--------FOR--------");
-		for(int x = 0; x < especialdade.size(); x++) {
-			System.out.println(especialdade.get(x).getNome());
-		}
-		
-		//FOR EACH -> para cada
-		System.out.println("--------FOR EACH--------");
-		for(Especialidade e : especialdade) {
-			System.out.println(e.getNome());
-		}
-		
-		//Criar 3 planos de saúde, armazenar em um Arraylist
-		//Exibir o nome da operadora de cada um deles
-		
-		PlanoSaude d1 = new PlanoSaude("cooperativas médicas");
-		PlanoSaude d2 = new PlanoSaude("autogestões");
-		PlanoSaude d3 = new PlanoSaude("Vivo");
-		
-		System.out.println("--------Plano De Saúde--------");
-		ArrayList<PlanoSaude> planoDeSaude = new ArrayList<>(); 
-	
-		PlanoSaude a1 = new PlanoSaude("cooperativas médicas");
-		PlanoSaude a2 = new PlanoSaude("autogestões");
-		PlanoSaude a3 = new PlanoSaude("Vivo");
-		
-		planoDeSaude.add(a1);
-		planoDeSaude.add(a2);
-		planoDeSaude.add(a3);
-		
-		for(PlanoSaude p : planoDeSaude) {
-			System.out.println(p.getOperadora());
-			System.out.println(PlanoSaude.getQuantidade());
-		}
-		
-		Clinica.main(args);
-		
-		System.out.println("----" + PlanoSaude.getQuantidade());
-		
-		
-	}
+        Especialidade e1 = new Especialidade("Cardiologia", "Não deixa ter um ataque do coração");
+        //e1.setNome("Cardiologia");
+        //e1.setDescricao("Não deixa ter um ataque do coração");
+
+        Especialidade e2 = new Especialidade("Gastroenterologia");
+        e2.setNome("Gastroenterologia");
+        e2.setDescricao("Não deixa ficar com dor de barriga");
+
+        Especialidade e4 = new Especialidade("Otorrino", "Cuida do ouvido");
+
+        Especialidade e3 = new Especialidade();
+        e3.setNome("Qualquer coisa");
+        
+        Especialidade e5 = new Especialidade();
+        e5.setNome("Especialidade 5");
+        
+        //Exibir a quantidade de especialidades
+        System.out.println("Total-----> " + e4.getCodigo());
+        
+        System.out.println( e1.getCodigo() + "-" + e1.getNome());
+        System.out.println( e2.getCodigo() + "-" + e2.getNome());
+        System.out.println( e3.getCodigo() + "-" + e3.getNome());
+        System.out.println( e4.getCodigo() + "-" + e4.getNome());
+        System.out.println( e5.getCodigo() + "-" + e5.getNome());
+
+        ArrayList<Especialidade> especialdade = new ArrayList<>();
+        especialdade.add(e1);
+        especialdade.add(e2);
+        especialdade.add(e3);
+
+        System.out.println(especialdade.size());
+
+        //Imprimir no console o nome das especialidade
+        // que estão armazenadas no Arraylist
+        System.out.println("--------WHILE--------");
+        int i = 0;
+        while (i < especialdade.size()) {
+            System.out.println(especialdade.get(i).getNome());
+            i++;
+        }
+
+        //Utilização do for para iteração no Arrarylist
+        System.out.println("--------FOR--------");
+        for (int x = 0; x < especialdade.size(); x++) {
+            System.out.println(especialdade.get(x).getNome());
+        }
+
+        //FOR EACH -> para cada
+        System.out.println("--------FOR EACH--------");
+        for (Especialidade e : especialdade) {
+            System.out.println(e.getNome());
+        }
+        
+        //Criar 3 planos de saúde, armazenar em um Arraylist
+        //Exibir o nome da operadora de cada um deles
+        PlanoSaude d1 = new PlanoSaude("cooperativas médicas");
+        PlanoSaude d2 = new PlanoSaude("autogestões");
+        PlanoSaude d3 = new PlanoSaude("Vivo");
+
+        System.out.println("--------Plano De Saúde--------");
+        ArrayList<PlanoSaude> planoDeSaude = new ArrayList<>();
+
+        PlanoSaude a1 = new PlanoSaude("cooperativas médicas");
+        PlanoSaude a2 = new PlanoSaude("autogestões");
+        PlanoSaude a3 = new PlanoSaude("Vivo");
+
+        planoDeSaude.add(a1);
+        planoDeSaude.add(a2);
+        planoDeSaude.add(a3);
+
+        for (PlanoSaude p : planoDeSaude) {
+            System.out.println(p.getOperadora());
+            System.out.println(PlanoSaude.getQuantidade());
+        }
+
+        Clinica.main(args);
+
+        System.out.println("----" + PlanoSaude.getQuantidade());
+
+    }
 
 }
