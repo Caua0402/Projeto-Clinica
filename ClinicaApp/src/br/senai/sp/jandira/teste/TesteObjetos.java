@@ -21,10 +21,11 @@ public class TesteObjetos {
         e2.setNome("Gastroenterologia");
         e2.setDescricao("Não deixa ficar com dor de barriga");
 
-        Especialidade e4 = new Especialidade("Otorrino", "Cuida do ouvido");
+        Especialidade e3 = new Especialidade("Otorrino", "Cuida do ouvido");
 
-        Especialidade e3 = new Especialidade();
-        e3.setNome("Qualquer coisa");
+        Especialidade e4 = new Especialidade();
+        e4.setNome("Qualquer coisa");
+        e4.setDescricao("Parte da medicina estuda as doenças da pele");
         
         Especialidade e5 = new Especialidade();
         e5.setNome("Especialidade 5");
@@ -39,7 +40,18 @@ public class TesteObjetos {
         EspecialidadeDAO.gravar(e4);
         System.out.println("TAMANHO ---> " + EspecialidadeDAO.getEspecialidade().size());
         
+        System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
+        EspecialidadeDAO.excluir(102);
+        System.out.println("TAMANHO ---> " + EspecialidadeDAO.getEspecialidade().size());
+        System.out.println("---------------------------");
+        
+        Especialidade correta = new Especialidade("Dermatologia", "Parte da medicina estuda as doenças da pele");
+        correta.setCodigo(103);
+        EspecialidadeDAO.atualizar(correta);
+        System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
+        
         //Exibir a quantidade de especialidades
+        System.out.println("---------------------------");
         System.out.println("Total-----> " + e4.getCodigo());
         
         System.out.println( e1.getCodigo() + "-" + e1.getNome());
