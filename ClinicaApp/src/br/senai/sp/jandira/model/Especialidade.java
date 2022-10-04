@@ -4,10 +4,10 @@ import javax.swing.JOptionPane;
 
 public class Especialidade {
 
-    private static int contador = 99;
     private Integer codigo;
     private String nome;
     private String descricao;
+    private static int contador = 99;
 
     //Construtores da classe
     public Especialidade(String nome) {

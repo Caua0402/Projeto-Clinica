@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import br.senai.sp.jandira.Clinica;
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoSaude;
 
@@ -27,6 +28,16 @@ public class TesteObjetos {
         
         Especialidade e5 = new Especialidade();
         e5.setNome("Especialidade 5");
+        
+        
+        EspecialidadeDAO.gravar(e1);
+        EspecialidadeDAO.gravar(e2);
+        System.out.println("Tamanho ---> " + EspecialidadeDAO.getEspecialidade().size());
+        
+        
+        EspecialidadeDAO.gravar(e3);
+        EspecialidadeDAO.gravar(e4);
+        System.out.println("TAMANHO ---> " + EspecialidadeDAO.getEspecialidade().size());
         
         //Exibir a quantidade de especialidades
         System.out.println("Total-----> " + e4.getCodigo());
