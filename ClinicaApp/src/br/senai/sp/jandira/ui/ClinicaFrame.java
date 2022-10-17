@@ -80,7 +80,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
             }
         });
         PanelMain.add(ButtonPlanoSaude);
-        ButtonPlanoSaude.setBounds(660, 20, 150, 27);
+        ButtonPlanoSaude.setBounds(680, 20, 150, 27);
 
         ButtonEspecialidade.setBackground(new java.awt.Color(65, 105, 225));
         ButtonEspecialidade.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -94,7 +94,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
             }
         });
         PanelMain.add(ButtonEspecialidade);
-        ButtonEspecialidade.setBounds(510, 20, 140, 31);
+        ButtonEspecialidade.setBounds(510, 20, 160, 30);
 
         ButtonMédicos.setBackground(new java.awt.Color(65, 105, 225));
         ButtonMédicos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N

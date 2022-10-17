@@ -12,21 +12,18 @@ public class Especialidade {
     //Construtores da classe
     public Especialidade(String nome) {
         this.nome = nome;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade(String nome, String descricao) {
         this.descricao = descricao;
         this.nome = nome;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     //Construtor Default/Padão
     public Especialidade() {
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     // Métodos de acesso aos atributos
@@ -34,8 +31,9 @@ public class Especialidade {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    private void gerarCodigo(){
+        this.contador++;
+        this.codigo = contador;
     }
 
     public int getContador() {

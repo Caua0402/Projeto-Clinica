@@ -1,17 +1,27 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadePanel extends javax.swing.JPanel {
 
+    private int linha;
+    
     public EspecialidadePanel() {
         initComponents();
         EspecialidadeDAO.criarListaDeEpecialidade();
         preencherTabela();
     }
+
+    private int getLinha() {
+        linha = tableEspecialidade.getSelectedRow();
+        return linha;
+    }
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -61,6 +71,11 @@ public class EspecialidadePanel extends javax.swing.JPanel {
         ButtonEditar.setBackground(new java.awt.Color(255, 255, 255));
         ButtonEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagem/Lapis1.png"))); // NOI18N
         ButtonEditar.setToolTipText("Editar");
+        ButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonEditarActionPerformed(evt);
+            }
+        });
         add(ButtonEditar);
         ButtonEditar.setBounds(820, 310, 50, 40);
 
@@ -84,9 +99,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
 
     private void ButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeleteActionPerformed
 
-        int linha = tableEspecialidade.getSelectedRow();
-        
-        if(linha != -1){
+        if(getLinha() != -1){
             excluirEspecialidade();
         }else {
             JOptionPane.showMessageDialog(
@@ -96,21 +109,50 @@ public class EspecialidadePanel extends javax.swing.JPanel {
                     JOptionPane.WARNING_MESSAGE);
                     
         }
-        
-        
     }//GEN-LAST:event_ButtonDeleteActionPerformed
 
-    private void excluirEspecialidade(){
-        int linha = tableEspecialidade.getSelectedRow();
-        String codigoStr = tableEspecialidade.getValueAt(linha, 0).toString();
-        Integer codigo = Integer.valueOf(codigoStr);
+    private void ButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEditarActionPerformed
+
+        if(getLinha() != -1) {
+            editarEspecialidade();
+        }else{
+            JOptionPane.showMessageDialog(this, 
+                    "Por favor, selecione a especialidade que você deseja editar.",
+                    "Especialidade",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_ButtonEditarActionPerformed
+        private void editarEspecialidade(){
+            
+            Especialidade especialidade = EspecialidadeDAO.getEspecialidade(getCodigo());
+            
+            EspecialidadeDialog especialidadeDialog =
+                new EspecialidadeDialog(null, true, EspecialidadeDAO.getEspecialidade(getCodigo()));
         
-        int resposta = JOptionPane.showConfirmDialog(this, "Você confirma a exclusão?", "Atenção", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE);
-        
-        EspecialidadeDAO.excluir(codigo);
+        especialidadeDialog.setVisible(true);
         preencherTabela();
+        }
+    
+    private void excluirEspecialidade(){
         
-        System.out.println(codigoStr);
+        int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Você confirma a exclusão?",
+                "Atenção",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        
+        if(resposta == 0){
+        
+        EspecialidadeDAO.excluir(getCodigo());
+        preencherTabela();
+        }
+    }
+    
+    private Integer getCodigo(){
+        String codigoStr = tableEspecialidade.getValueAt(getLinha(), 0).toString();
+        Integer codigo = Integer.valueOf(codigoStr);
+        return codigo;
     }
     
 

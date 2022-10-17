@@ -73,7 +73,6 @@ public class TesteObjetos {
         System.out.println("---------------------------");
         
         Especialidade correta = new Especialidade("Dermatologia", "Parte da medicina estuda as doenças da pele");
-        correta.setCodigo(103);
         EspecialidadeDAO.atualizar(correta);
         System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
         

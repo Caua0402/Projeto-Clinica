@@ -30,7 +30,8 @@ public class EspecialidadeDAO {
         for (Especialidade e : especialidades) {
             if (correta.getCodigo() == e.getCodigo()) {
                 int posicao = especialidades.indexOf(e);
-                especialidades.set(posicao, correta);
+                especialidades.set(especialidades.indexOf(e), correta);
+                break;
             }
         }
     }

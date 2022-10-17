@@ -5,8 +5,10 @@
         <group>
             <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/model/Especialidade.java</file>
             <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/dao/EspecialidadeDAO.java</file>
-            <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/teste/TesteObjetos.java</file>
+            <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/ui/EspecialidadeDialog.java</file>
+            <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/ui/EspecialidadePanel.java</file>
             <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/Clinica.java</file>
+            <file>file:/C:/Users/22282180/eclipse-workspace/Projeto-Clinica/ClinicaApp/src/br/senai/sp/jandira/ui/ClinicaFrame.java</file>
         </group>
     </open-files>
 </project-private>
