@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 public class ClinicaFrame extends javax.swing.JFrame {
 
     private EspecialidadePanel especialidadePanel;
+    private PlanoDeSaudePanel planodesaudePanel;
     private final int POS_X = 10;
     private final int POS_Y = 150;
     private final int POS_WIDTH = 980;
@@ -231,8 +232,10 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private void ButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHomeActionPerformed
         ButtonEspecialidade.setBackground(new java.awt.Color(65,105,225));
         ButtonHome.setBackground(new java.awt.Color(173,216,230));
+        ButtonPlanoSaude.setBackground(new java.awt.Color(65,105,225));
         PainelHome.setVisible(true);
         especialidadePanel.setVisible(false);
+        planodesaudePanel.setVisible(false);
     }//GEN-LAST:event_ButtonHomeActionPerformed
 
     private void ButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendaActionPerformed
@@ -250,12 +253,19 @@ public class ClinicaFrame extends javax.swing.JFrame {
     private void ButtonEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEspecialidadeActionPerformed
         ButtonEspecialidade.setBackground(new java.awt.Color(173,216,230));
         ButtonHome.setBackground(new java.awt.Color(65,105,225));
+        ButtonPlanoSaude.setBackground(new java.awt.Color(65,105,225));
         PainelHome.setVisible(false);
         especialidadePanel.setVisible(true);
+        planodesaudePanel.setVisible(false);
     }//GEN-LAST:event_ButtonEspecialidadeActionPerformed
 
     private void ButtonPlanoSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonPlanoSaudeActionPerformed
-        // TODO add your handling code here:
+        ButtonEspecialidade.setBackground(new java.awt.Color(65,105,225));
+        ButtonHome.setBackground(new java.awt.Color(65,105,225));
+        ButtonPlanoSaude.setBackground(new java.awt.Color(173,216,230));
+        PainelHome.setVisible(false);
+        especialidadePanel.setVisible(false);
+        planodesaudePanel.setVisible(true);
     }//GEN-LAST:event_ButtonPlanoSaudeActionPerformed
 
 
@@ -287,7 +297,17 @@ public class ClinicaFrame extends javax.swing.JFrame {
         especialidadePanel.setBounds(10, 70, 980, 390);
         PanelMain.add(especialidadePanel);
         especialidadePanel.setVisible(false);
+        
+        planodesaudePanel = new PlanoDeSaudePanel();
+        planodesaudePanel.setBounds(10, 70, 980, 390);
+        PanelMain.add(planodesaudePanel);
+        planodesaudePanel.setVisible(false);
+        
     }
+    
+    
+        
+        
 
 
 }
