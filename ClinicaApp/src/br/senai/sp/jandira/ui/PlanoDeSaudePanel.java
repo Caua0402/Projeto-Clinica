@@ -111,10 +111,7 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ButtonEditarActionPerformed
 
     private void ButtonCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCriarActionPerformed
-        PlanoDeSaudeDialog planodesaudeDialog =
-                new PlanoDeSaudeDialog(null, true, OperacaoEnum.ADICIONAR);
-        PlanoDeSaudeDialog.setVisible(true);
-        preencherTabela();
+       
     }//GEN-LAST:event_ButtonCriarActionPerformed
 
     
