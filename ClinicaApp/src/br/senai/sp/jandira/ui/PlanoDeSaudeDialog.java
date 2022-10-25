@@ -2,8 +2,12 @@
 package br.senai.sp.jandira.ui;
 
 
+import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoSaude;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
        
@@ -44,11 +48,13 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         CodigoTextField.setText(planodesaude.getCodigo().toString());
         OperadoraTextField.setText(planodesaude.getOperadora());
         CategoriaTextField.setText(planodesaude.getCategoria());
+        NumeroTextField.setText(planodesaude.getNumero());
+        ValidadeTextField.setText(planodesaude.getValidade().toString());
         
     }
     
     private void preencherTitulo(){
-        LabelTitulo.setText(  operacao +" - Especialidade");
+        LabelTitulo.setText(  operacao +" - Plano De Saude");
         
         if(operacao == OperacaoEnum.EDITAR){
             LabelTitulo.setIcon(new javax.swing.ImageIcon(
@@ -94,7 +100,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         LabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagem/plus32.png"))); // NOI18N
         LabelTitulo.setText("Adicionar - Especialidade");
         jPanel1.add(LabelTitulo);
-        LabelTitulo.setBounds(20, 10, 270, 40);
+        LabelTitulo.setBounds(20, 10, 340, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 640, 60);
@@ -125,7 +131,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         CategoriaLabel.setBounds(10, 130, 180, 16);
 
         SalvarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagem/diskette.png"))); // NOI18N
-        SalvarButton.setToolTipText("Salvar Especialidade");
+        SalvarButton.setToolTipText("Salvar Plano");
         SalvarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalvarButtonActionPerformed(evt);
@@ -151,7 +157,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         NomeTextField1.setBounds(10, 122, 360, 0);
 
         NumeroLabel.setForeground(new java.awt.Color(0, 0, 0));
-        NumeroLabel.setText("Número de Plano:");
+        NumeroLabel.setText("Número:");
         jPanel2.add(NumeroLabel);
         NumeroLabel.setBounds(10, 180, 150, 16);
         jPanel2.add(NumeroTextField);
@@ -167,16 +173,54 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 60, 640, 350);
 
-        pack();
+        setSize(new java.awt.Dimension(656, 462));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarButtonActionPerformed
-
-
-
+        if(operacao == OperacaoEnum.ADICIONAR){
+            adicionar();
+        }else{
+            editar();
+        }
     }//GEN-LAST:event_SalvarButtonActionPerformed
-
+    
+    private void adicionar(){
+        //Criar um objeto especialidade
+        PlanoSaude novoplano = new PlanoSaude();
+        novoplano.setOperadora(OperadoraTextField.getText());
+        novoplano.setCategoria(CategoriaTextField.getText());
+        novoplano.setNumero(NumeroTextField.getText());
+        novoplano.setValidade(LocalDate.parse(ValidadeTextField.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+        //Gravar o objeto, atraves do DAO.
+        PlanoDeSaudeDAO.gravar(novoplano);
+        
+        JOptionPane.showMessageDialog(
+                this,
+                "Plano gravada com sucesso",
+                "Plano De Saude",
+                JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+    }
+    
+    private void editar(){
+        planodesaude.setOperadora(OperadoraTextField.getText());
+        planodesaude.setCategoria(CategoriaTextField.getText());
+        planodesaude.setNumero(NumeroTextField.getText());
+        planodesaude.setValidade(LocalDate.parse(ValidadeTextField.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+        PlanoDeSaudeDAO.atualizar(planodesaude);
+        
+        JOptionPane.showMessageDialog(
+                this,
+                "Plano atualizada com sucesso!",
+                "Plano De Saude",
+                JOptionPane.INFORMATION_MESSAGE);
+        dispose();
+    }
+    
+    
     private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
         dispose();
     }//GEN-LAST:event_CancelarButtonActionPerformed

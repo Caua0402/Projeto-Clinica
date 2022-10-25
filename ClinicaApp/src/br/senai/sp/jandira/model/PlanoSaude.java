@@ -16,15 +16,15 @@ public class PlanoSaude {
         
         
         //Construtores da classe
-        public PlanoSaude(String nome) {
-            this.operadora = nome;
+        public PlanoSaude(String operadora) {
+            this.operadora = operadora;
             gerarCodigo();
     }
 
-        public PlanoSaude(String nome, String categoria, String numero, LocalDate validade) {
+        public PlanoSaude(String operadora, String categoria, String numero, LocalDate validade) {
             this.categoria = categoria;
             this.numero = numero;
-            this.operadora = nome;
+            this.operadora = operadora;
             this.validade = validade;
             gerarCodigo();
     }
@@ -45,7 +45,8 @@ public class PlanoSaude {
         }
 	
 	public PlanoSaude() {
-		this.codigo++;
+		this.quantidade++;
+                gerarCodigo();
 	}
 
 	public void setOperadora(String operadora) {
