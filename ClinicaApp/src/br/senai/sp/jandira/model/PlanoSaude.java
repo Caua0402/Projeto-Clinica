@@ -2,6 +2,7 @@ package br.senai.sp.jandira.model;
 
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JTable;
 
 public class PlanoSaude {
@@ -10,6 +11,8 @@ public class PlanoSaude {
 	private String operadora;
 	private String categoria;
 	private String numero;
+        private DateTimeFormatter formatador;
+        private String formateDate;
 	private LocalDate validade;
 	private static int quantidade;
         private static int contador = 99;
@@ -22,6 +25,10 @@ public class PlanoSaude {
     }
 
         public PlanoSaude(String operadora, String categoria, String numero, LocalDate validade) {
+            
+            formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            formateDate =  validade.format(formatador);
+            
             this.categoria = categoria;
             this.numero = numero;
             this.operadora = operadora;
@@ -31,6 +38,21 @@ public class PlanoSaude {
         
         
         // Métodos de acesso aos atributos
+
+        public DateTimeFormatter getFormatador() {
+            return formatador;
+    }
+
+    public void setFormateDate(String formateDate) {
+        this.formateDate = formateDate;
+    }
+
+    public String getFormateDate() {
+        return formateDate;
+    }
+        
+        
+        
         public Integer getCodigo() {
             return codigo;
         }

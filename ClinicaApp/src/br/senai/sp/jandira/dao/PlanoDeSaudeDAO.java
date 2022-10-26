@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
 
 public class PlanoDeSaudeDAO {
     
@@ -51,8 +52,8 @@ public class PlanoDeSaudeDAO {
 
     //Criar uma lista inicial de especialidade
     public static void criarListaPlanosDeSaude() {
-        PlanoSaude e1 = new PlanoSaude("Amil", "Dermatologia", "987688-90",LocalDate.of(2023, 06, 13) );
-        PlanoSaude e2 = new PlanoSaude("Amil", "Dermatologia", "987688-90", LocalDate.of(2026, 07, 15));
+        PlanoSaude e1 = new PlanoSaude("Amil", "Dermatologia", "11-98768-6790",LocalDate.of(2023, 06, 13) );
+        PlanoSaude e2 = new PlanoSaude("Amil", "Fisioterapia", "11-94478-4208", LocalDate.of(2026, 07, 15));
         
 
         planodesaude.add(e1);
@@ -72,8 +73,7 @@ public class PlanoDeSaudeDAO {
             dados[i][1] = e.getOperadora();
             dados[i][2] = e.getCategoria();
             dados[i][3] = e.getNumero();
-            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            dados[i][4] = e.getValidade().format(formatDate);
+            dados[i][4] = e.getFormateDate();
             i++;
         
         }

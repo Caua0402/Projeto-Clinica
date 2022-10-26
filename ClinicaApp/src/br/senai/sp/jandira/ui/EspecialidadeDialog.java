@@ -152,11 +152,16 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SalvarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarButtonActionPerformed
-        
-        if(operacao == OperacaoEnum.ADICIONAR){
+        if(NomeTextField.getText().isBlank() == true || DescricaoTextField.getText().isBlank() == true){
+            JOptionPane.showMessageDialog(this,
+                    "Preencha todos container para poder salvar!!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);
+        }else{
+            if(operacao == OperacaoEnum.ADICIONAR){
             adicionar();
         }else{
             editar();
+        }
         }
         
     }//GEN-LAST:event_SalvarButtonActionPerformed

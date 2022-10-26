@@ -226,7 +226,7 @@ public class ClinicaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_ButtonSairActionPerformed
 
     private void ButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonHomeActionPerformed
