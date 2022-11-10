@@ -35,7 +35,7 @@ public class EspecialidadePanel extends javax.swing.JPanel {
         ButtonCriar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Especialidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Especialidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 510));
         setLayout(null);

@@ -37,6 +37,7 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
         ButtonCriar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Plano de Saúde", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         setOpaque(false);
         setLayout(null);
 

@@ -2,13 +2,26 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoSaude;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.sound.midi.Patch;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DateFormatter;
 
 public class PlanoDeSaudeDAO {
+    
+    private static final String URL = "C:\\Users\\22282180\\Java\\PlanoDeSaude.txt"; 
+    private static final Path PATH = Paths.get(URL);
     
     private static ArrayList<PlanoSaude> planodesaude = new ArrayList<>();
 
@@ -27,6 +40,27 @@ public class PlanoDeSaudeDAO {
 
     public static void gravar(PlanoSaude e) {
         planodesaude.add(e);
+        
+        //Gravar em arquivo
+        try {
+            BufferedWriter escritor = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+            
+        escritor.write(e.getPlanoSeparadaPorPontoEVirgula());
+        escritor.newLine();
+        escritor.close();
+            
+        } catch (IOException err) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro");
+            
+        }
+        
+        
+        
+        
+        
     }
 
     public static void atualizar(PlanoSaude correta) {
@@ -52,12 +86,43 @@ public class PlanoDeSaudeDAO {
 
     //Criar uma lista inicial de especialidade
     public static void criarListaPlanosDeSaude() {
-        PlanoSaude e1 = new PlanoSaude("Amil", "Dermatologia", "11-98768-6790",LocalDate.of(2023, 06, 13) );
-        PlanoSaude e2 = new PlanoSaude("Amil", "Fisioterapia", "11-94478-4208", LocalDate.of(2026, 07, 15));
         
-
-        planodesaude.add(e1);
-        planodesaude.add(e2);
+        try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            
+            while( linha != null){
+                //Transforma os dados da linha em uma especialidade
+                String[] vetor = linha.split(";");
+                PlanoSaude e = new PlanoSaude(Integer.valueOf(vetor[0]),
+                        vetor[1], vetor[2], vetor[3], vetor[4]);
+                
+                
+                //Guarda a especialidade na lista
+                planodesaude.add(e);
+                
+                //Ler a proxima linha
+                linha = leitor.readLine();
+            }
+            
+            leitor.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu um erro no arquivo");
+        }
+        
+        
+        
+        
+//        PlanoSaude e1 = new PlanoSaude("Amil", "Dermatologia", "(11)98768-6790",LocalDate.of(2023, 06, 13) );
+//        PlanoSaude e2 = new PlanoSaude("Amil", "Fisioterapia", "(11)94478-4208", LocalDate.of(2026, 07, 15));
+//        
+//
+//        planodesaude.add(e1);
+//        planodesaude.add(e2);
 
  }
 

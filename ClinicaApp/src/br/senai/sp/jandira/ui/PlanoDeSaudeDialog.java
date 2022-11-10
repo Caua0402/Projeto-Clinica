@@ -168,12 +168,17 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
         NumeroTextField.setColumns(11);
         try {
-            NumeroTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-#####-####")));
+            NumeroTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        NumeroTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NumeroTextFieldActionPerformed(evt);
+            }
+        });
         jPanel2.add(NumeroTextField);
-        NumeroTextField.setBounds(10, 200, 180, 22);
+        NumeroTextField.setBounds(10, 200, 110, 22);
 
         ValidadeTextField.setColumns(8);
         try {
@@ -182,7 +187,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jPanel2.add(ValidadeTextField);
-        ValidadeTextField.setBounds(10, 250, 460, 22);
+        ValidadeTextField.setBounds(10, 250, 80, 22);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 60, 640, 350);
@@ -249,6 +254,10 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
         dispose();
     }//GEN-LAST:event_CancelarButtonActionPerformed
+
+    private void NumeroTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NumeroTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

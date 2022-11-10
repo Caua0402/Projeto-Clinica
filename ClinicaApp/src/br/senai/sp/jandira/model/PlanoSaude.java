@@ -15,7 +15,7 @@ public class PlanoSaude {
         private String formateDate;
 	private LocalDate validade;
 	private static int quantidade;
-        private static int contador = 99;
+        private static int contador = 100;
         
         
         //Construtores da classe
@@ -34,6 +34,16 @@ public class PlanoSaude {
             this.operadora = operadora;
             this.validade = validade;
             gerarCodigo();
+    }
+        
+        public PlanoSaude(Integer codigo, String operadora, String categoria, String numero, String validade) {
+            
+            this.categoria = categoria;
+            this.numero = numero;
+            this.operadora = operadora;
+            this.formateDate = validade;
+            this.codigo = codigo;
+            this.contador = codigo;
     }
         
         
@@ -106,6 +116,10 @@ public class PlanoSaude {
 	public static int getQuantidade() {
 		return quantidade;
 	}
+        
+        public String getPlanoSeparadaPorPontoEVirgula(){
+            return this.codigo + ";" + this.operadora + ";" + this.categoria + ";" + this.numero + ";" + this.formateDate;
+        }
 }
 
  

@@ -7,7 +7,8 @@ public class Especialidade {
     private Integer codigo;
     private String nome;
     private String descricao;
-    private static int contador = 99;
+    private static int contador = 100;
+    
 
     //Construtores da classe
     public Especialidade(String nome) {
@@ -19,6 +20,13 @@ public class Especialidade {
         this.descricao = descricao;
         this.nome = nome;
         gerarCodigo();
+    }
+    
+    public Especialidade(String nome, String descricao, Integer codigo) {
+        this.descricao = descricao;
+        this.nome = nome;
+        this.codigo = codigo;
+        this.contador = codigo;
     }
 
     //Construtor Default/Padão
@@ -67,6 +75,10 @@ public class Especialidade {
 
     public String getDescricao() {
         return descricao;
+    }
+    
+    public String getEspecialidadeSeparadaPorPontoEVirgula(){
+        return this.codigo + ";" + this.nome + ";" + this.descricao;
     }
 
 }
