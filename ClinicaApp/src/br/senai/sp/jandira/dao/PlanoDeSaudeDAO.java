@@ -1,9 +1,11 @@
 
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,7 +23,9 @@ import javax.swing.text.DateFormatter;
 public class PlanoDeSaudeDAO {
     
     private static final String URL = "C:\\Users\\22282180\\Java\\PlanoDeSaude.txt"; 
+    private static final String URL_TEMP = "C:\\Users\\22282180\\Java\\PlanoDeSaudeTemp.txt"; 
     private static final Path PATH = Paths.get(URL);
+    private static final Path PATH_TEMP = Paths.get(URL_TEMP);
     
     private static ArrayList<PlanoSaude> planodesaude = new ArrayList<>();
 
@@ -57,10 +61,6 @@ public class PlanoDeSaudeDAO {
             
         }
         
-        
-        
-        
-        
     }
 
     public static void atualizar(PlanoSaude correta) {
@@ -72,16 +72,54 @@ public class PlanoDeSaudeDAO {
                 break;
             }
         }
+        atualizarArquivo();
     }
 
     public static void excluir(Integer codigo) {
 
         for (PlanoSaude e : planodesaude) {
-            if (codigo == e.getCodigo()) {
+            if (e.getCodigo().equals(codigo)) {
                 planodesaude.remove(e);
                 break;
             }
         }
+        atualizarArquivo();
+    }
+    
+    private static void atualizarArquivo(){
+        //Passo 01 - Criar uma representação dos arquivos que serão manipulados
+        File arquivoAtual = new File(URL);
+        File arquivoTemp = new File(URL_TEMP);
+
+        try {
+            //Criar o arquivo temporário
+            arquivoTemp.createNewFile();
+
+            //Abrir o arquivo temporário para escrita
+            BufferedWriter assisTemp = Files.newBufferedWriter(PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar na lista para adicionar as especialidade
+            //no arquivo temporário, exceto o registro que
+            //não queremos mais
+            for(PlanoSaude e : planodesaude ){
+                assisTemp.write(e.getPlanoSeparadaPorPontoEVirgula());
+                assisTemp.newLine();
+            }
+            
+            assisTemp.close();
+            
+            //Excluir o arquivo atual
+            arquivoAtual.delete();
+            
+            //Renomear o arquivo temporário
+            arquivoTemp.renameTo(arquivoAtual);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     //Criar uma lista inicial de especialidade

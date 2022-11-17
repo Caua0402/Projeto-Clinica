@@ -7,7 +7,7 @@ public class Especialidade {
     private Integer codigo;
     private String nome;
     private String descricao;
-    private static int contador = 100;
+    private static int contador = 99;
     
 
     //Construtores da classe

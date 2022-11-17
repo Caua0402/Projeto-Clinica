@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,21 +14,21 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class EspecialidadeDAO {
+public class MedicoDAO {
 
-    private static final String URL = "C:\\Users\\22282180\\Java\\Especialidade.txt";
-    private static final String URL_TEMP = "C:\\Users\\22282180\\Java\\Especialidade-temp.txt";
+    private static final String URL = "C:\\Users\\22282180\\Java\\Medico.txt";
+    private static final String URL_TEMP = "C:\\Users\\22282180\\Java\\Medico-temp.txt";
     private static final Path PATH = Paths.get(URL);
     private static final Path PATH_TEMP = Paths.get(URL_TEMP);
 
-    private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    private static ArrayList<Medico> medico = new ArrayList<>();
 
-    public static ArrayList<Especialidade> getEspecialidade() {
-        return especialidades;
+    public static ArrayList<Medico> getMedico() {
+        return medico;
     }
 
-    public static Especialidade getEspecialidade(Integer codigo) {
-        for (Especialidade e : especialidades) {
+    public static Medico getMedico(Integer codigo) {
+        for (Medico e : medico) {
             if (codigo == e.getCodigo()) {
                 return e;
             }
@@ -35,8 +36,8 @@ public class EspecialidadeDAO {
         return null;
     }
 
-    public static void gravar(Especialidade e) {
-        especialidades.add(e);
+    public static void gravar(Medico e) {
+        medico.add(e);
 
         //Gravar em arquivo
         try {
@@ -45,7 +46,7 @@ public class EspecialidadeDAO {
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
-            escritor.write(e.getEspecialidadeSeparadaPorPontoEVirgula());
+            escritor.write(e.getMedicoSeparadaPorPontoEVirgula());
             escritor.newLine();
             escritor.close();
 
@@ -56,12 +57,12 @@ public class EspecialidadeDAO {
 
     }
 
-    public static void atualizar(Especialidade correta) {
+    public static void atualizar(Medico correta) {
 
-        for (Especialidade e : especialidades) {
+        for (Medico e : medico) {
             if (correta.getCodigo() == e.getCodigo()) {
-                int posicao = especialidades.indexOf(e);
-                especialidades.set(especialidades.indexOf(e), correta);
+                int posicao = medico.indexOf(e);
+                medico.set(medico.indexOf(e), correta);
                 break;
             }
         }
@@ -70,9 +71,9 @@ public class EspecialidadeDAO {
 
     public static void excluir(Integer codigo) {
         
-        for (Especialidade e : especialidades) {
+        for (Medico e : medico) {
                 if (e.getCodigo().equals(codigo)) {
-                    especialidades.remove(e);
+                    medico.remove(e);
                     break;
                 }
             }
@@ -89,19 +90,19 @@ public class EspecialidadeDAO {
             arquivoTemp.createNewFile();
 
             //Abrir o arquivo temporário para escrita
-            BufferedWriter assisTemp = Files.newBufferedWriter(PATH_TEMP,
+            BufferedWriter bw = Files.newBufferedWriter(PATH_TEMP,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
 
             //Iterar na lista para adicionar as especialidade
             //no arquivo temporário, exceto o registro que
             //não queremos mais
-            for(Especialidade e : especialidades){
-                assisTemp.write(e.getEspecialidadeSeparadaPorPontoEVirgula());
-                assisTemp.newLine();
+            for(Medico e : medico){
+                bw.write(e.getMedicoSeparadaPorPontoEVirgula());
+                bw.newLine();
             }
             
-            assisTemp.close();
+            bw.close();
             
             //Excluir o arquivo atual
             arquivoAtual.delete();
@@ -116,7 +117,7 @@ public class EspecialidadeDAO {
     }
 
     //Criar uma lista inicial de especialidade
-    public static void criarListaDeEpecialidade() {
+    public static void criarListaDeMedico() {
 
         try {
             BufferedReader leitor = Files.newBufferedReader(PATH);
@@ -126,11 +127,11 @@ public class EspecialidadeDAO {
             while (linha != null) {
                 //Transforma os dados da linha em uma especialidade
                 String[] vetor = linha.split(";");
-                Especialidade e = new Especialidade(vetor[1], vetor[2],
+                Medico e = new Medico(vetor[1], vetor[2], vetor[3], vetor[4], vetor[5], vetor[6],
                         Integer.valueOf(vetor[0]));
 
                 //Guarda a especialidade na lista
-                especialidades.add(e);
+                medico.add(e);
 
                 //Ler a proxima linha
                 linha = leitor.readLine();
@@ -139,7 +140,8 @@ public class EspecialidadeDAO {
             leitor.close();
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro no arquivo");
+            JOptionPane.showMessageDialog(null,
+                    "Ocorreu um erro no arquivo");
         }
 
 //        Especialidade e1 = new Especialidade("Fisioterapia", "Ajuda você com seus musculos");
@@ -155,15 +157,16 @@ public class EspecialidadeDAO {
 
     public static DefaultTableModel getEspecialidadeModel() {
 
-        String[] titulos = {"Código", "Nome da Especialidade", "Descrição"};
+        String[] titulos = {"Código", "CRM", "MEDICO", "TELEFONE"};
 
-        String[][] dados = new String[especialidades.size()][3];
+        String[][] dados = new String[medico.size()][3];
 
         int i = 0;
-        for (Especialidade e : especialidades) {
+        for (Medico e : medico) {
             dados[i][0] = e.getCodigo().toString();
-            dados[i][1] = e.getNome();
-            dados[i][2] = e.getDescricao();
+            dados[i][1] = e.getCrm();
+            dados[i][2] = e.getNome();
+            dados[i][3] = e.getTelefone();
             i++;
 
         }
@@ -174,3 +177,4 @@ public class EspecialidadeDAO {
     }
 
 }
+

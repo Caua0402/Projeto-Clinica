@@ -15,7 +15,7 @@ public class PlanoSaude {
         private String formateDate;
 	private LocalDate validade;
 	private static int quantidade;
-        private static int contador = 100;
+        private static int contador = 99;
         
         
         //Construtores da classe
