@@ -70,17 +70,17 @@ public class MedicoDAO {
     }
 
     public static void excluir(Integer codigo) {
-        
+
         for (Medico e : medico) {
-                if (e.getCodigo().equals(codigo)) {
-                    medico.remove(e);
-                    break;
-                }
+            if (e.getCodigo().equals(codigo)) {
+                medico.remove(e);
+                break;
             }
+        }
         atualizarArquivo();
     }
-    
-    private static void atualizarArquivo(){
+
+    private static void atualizarArquivo() {
         //Passo 01 - Criar uma representação dos arquivos que serão manipulados
         File arquivoAtual = new File(URL);
         File arquivoTemp = new File(URL_TEMP);
@@ -97,23 +97,23 @@ public class MedicoDAO {
             //Iterar na lista para adicionar as especialidade
             //no arquivo temporário, exceto o registro que
             //não queremos mais
-            for(Medico e : medico){
+            for (Medico e : medico) {
                 bw.write(e.getMedicoSeparadaPorPontoEVirgula());
                 bw.newLine();
             }
-            
+
             bw.close();
-            
+
             //Excluir o arquivo atual
             arquivoAtual.delete();
-            
+
             //Renomear o arquivo temporário
             arquivoTemp.renameTo(arquivoAtual);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
     //Criar uma lista inicial de especialidade
@@ -127,7 +127,9 @@ public class MedicoDAO {
             while (linha != null) {
                 //Transforma os dados da linha em uma especialidade
                 String[] vetor = linha.split(";");
-                Medico e = new Medico(vetor[1], vetor[2], vetor[3], vetor[4], vetor[5], vetor[6],
+                Medico e = new Medico(vetor[1],
+                        vetor[2],
+                        vetor[3],
                         Integer.valueOf(vetor[0]));
 
                 //Guarda a especialidade na lista
@@ -155,7 +157,7 @@ public class MedicoDAO {
 //        especialidades.add(e4);
     }
 
-    public static DefaultTableModel getEspecialidadeModel() {
+    public static DefaultTableModel getMedicoModel() {
 
         String[] titulos = {"Código", "CRM", "MEDICO", "TELEFONE"};
 
@@ -165,7 +167,7 @@ public class MedicoDAO {
         for (Medico e : medico) {
             dados[i][0] = e.getCodigo().toString();
             dados[i][1] = e.getCrm();
-            dados[i][2] = e.getNome();
+            dados[i][2] = e.getmedico();
             dados[i][3] = e.getTelefone();
             i++;
 
@@ -177,4 +179,3 @@ public class MedicoDAO {
     }
 
 }
-

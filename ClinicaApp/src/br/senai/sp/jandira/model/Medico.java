@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Medico {
 
-    private String nome;
+    private String medico;
     private Especialidade[] especialidades;
     private String telefone;
     private String email;
@@ -36,13 +36,12 @@ public class Medico {
     }
 
     //Construtores de Classe
-    public Medico(String nome, String telefone,
+    public Medico(String medico, String telefone,String email,
             String crm) {
         
-        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formateDate = validade.format(formatador);
         
-        this.nome = nome;
+        
+        this.medico = medico;
         this.telefone = telefone;
         this.email = email;
         this.crm = crm;
@@ -50,24 +49,26 @@ public class Medico {
 
     }
 
-    public Medico(String nome, Especialidade[] especialidade, String telefone,
-            String email, String crm, Integer codigo) {
+    public Medico(String medico, String telefone,
+             String email, Integer codigo) {
         
-        this.nome = nome;
-        this.especialidades = especialidade;
+        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formateDate = validade.format(formatador);
+        
+        this.medico = medico;
         this.telefone = telefone;
         this.email = email;
-        this.crm = crm;
         this.codigo = codigo;
         this.contador = codigo;
+        this.validade = validade;
     }
 
-    public String getNome() {
-        return nome;
+    public String getmedico() {
+        return medico;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setmedico(String nome) {
+        this.medico = medico;
     }
 
     public Especialidade[] getEspecialidade() {
@@ -104,10 +105,9 @@ public class Medico {
     
     public String getMedicoSeparadaPorPontoEVirgula(){
         return this.codigo + ";" +
-                this.nome + ";" +
+                this.medico + ";" +
                 this.telefone + ";" +
-                this.email + ";" +
-                this.crm;
+                this.email;
     }
 
 }
