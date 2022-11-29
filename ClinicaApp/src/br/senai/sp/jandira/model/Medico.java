@@ -1,81 +1,89 @@
 package br.senai.sp.jandira.model;
 
-import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Medico {
 
-    private String medico;
-    private Especialidade[] especialidades;
-    private String telefone;
-    private String email;
-    private String crm;
-    private Integer codigo;
-    private static int contador = 99;
-    private DateTimeFormatter formatador;
-    private String formateDate;
-    private LocalDate validade;
-    
-
     public Medico() {
         gerarCodigo();
+    }
+
+    public Medico(Integer codigo, String crm, String nome, String telefone, String email, String dataNascimento, ArrayList<Especialidade> especialidades) {
+
+        this.codigo = codigo;
+        this.crm = crm;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataFormatada = dataNascimento;
+        this.contador = codigo;
+
+    }
+
+    public Medico(String crm, String nome, String telefone, String email, LocalDate dataNascimento, ArrayList<Especialidade> especialidades) {
+
+        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dataFormatada = dataNascimento.format(formatador);
+
+        this.codigo = codigo;
+        this.crm = crm;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.especialidades = especialidades;
+        this.contador = codigo;
+
+        gerarCodigo();
+    }
+
+    public String getDataFormatada() {
+        return dataFormatada;
+    }
+
+    private Integer codigo;
+    private String crm;
+    private String nome;
+    private String telefone;
+    private String email;
+    private LocalDate dataNascimento;
+    private DateTimeFormatter formatador;
+    private String dataFormatada;
+    private ArrayList<Especialidade> especialidades;
+    private static int contador = 100;
+
+    public void gerarCodigo() {
+        Medico.contador++;
+        this.codigo = getContador();
     }
 
     public Integer getCodigo() {
         return codigo;
     }
 
-    private void gerarCodigo() {
-        this.contador++;
-        this.codigo = contador;
-    }
-
     public int getContador() {
         return contador;
     }
 
-    //Construtores de Classe
-    public Medico(String medico, String telefone,String email,
-            String crm) {
-        
-        
-        
-        this.medico = medico;
-        this.telefone = telefone;
-        this.email = email;
-        this.crm = crm;
-        gerarCodigo();
-
+    public void setDataFormatada(String data) {
+        this.dataFormatada = data;
     }
 
-    public Medico(String medico, String telefone,
-             String email, Integer codigo) {
-        
-        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        formateDate = validade.format(formatador);
-        
-        this.medico = medico;
-        this.telefone = telefone;
-        this.email = email;
-        this.codigo = codigo;
-        this.contador = codigo;
-        this.validade = validade;
+    public String getNome() {
+        return nome;
     }
 
-    public String getmedico() {
-        return medico;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setmedico(String nome) {
-        this.medico = medico;
-    }
-
-    public Especialidade[] getEspecialidade() {
+    public ArrayList<Especialidade> getEspecialidade() {
         return especialidades;
     }
 
-    public void setEspecialidade(Especialidade[] especialidades) {
+    public void setEspecialidade(ArrayList<Especialidade> especialidades) {
         this.especialidades = especialidades;
     }
 
@@ -102,12 +110,25 @@ public class Medico {
     public void setCrm(String crm) {
         this.crm = crm;
     }
-    
-    public String getMedicoSeparadaPorPontoEVirgula(){
-        return this.codigo + ";" +
-                this.medico + ";" +
-                this.telefone + ";" +
-                this.email;
+
+    public String arrayParaString(ArrayList<Especialidade> array) {
+        ArrayList<String> codigos = new ArrayList<String>();
+        for(Especialidade e : array){
+            codigos.add(e.getCodigo().toString());
+        }
+        
+        return String.join(";", codigos);
+    }
+
+    public String getSerializacao() {
+
+        return this.codigo + ";"
+                + this.crm + ";"
+                + this.nome + ";"
+                + this.telefone + ";"
+                + this.email + ";"
+                + this.dataFormatada + ";"
+                + arrayParaString(this.especialidades);
     }
 
 }

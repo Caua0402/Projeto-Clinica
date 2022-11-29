@@ -114,6 +114,18 @@ public class EspecialidadeDAO {
         }
         
     }
+    
+    public static ArrayList<Especialidade> separarCodigos ( String linha ) {
+        String[] vetor = linha.split(";");
+        
+        int codigoEspecialidade = 6;
+        
+        ArrayList<Especialidade> codigo = new ArrayList<>();
+        while (codigoEspecialidade < vetor.length){
+            codigo.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(vetor[codigoEspecialidade])));
+        }
+        return codigo;
+    }
 
     //Criar uma lista inicial de especialidade
     public static void criarListaDeEpecialidade() {

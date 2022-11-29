@@ -14,7 +14,7 @@ public class MedicoPanel extends javax.swing.JPanel {
     
     public MedicoPanel() {
         initComponents();
-        MedicoDAO.criarListaDeMedico();
+        MedicoDAO.criarListaDeMedicos();
         preencherTabela();
     }
 
@@ -36,6 +36,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(187, 187, 187));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Medico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        setOpaque(false);
         setLayout(null);
 
         tableMedico.setBackground(new java.awt.Color(255, 255, 255));
@@ -93,11 +94,11 @@ public class MedicoPanel extends javax.swing.JPanel {
     private void ButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeleteActionPerformed
 
         if(getLinha() != -1){
-            MedicoDAO.excluir(WIDTH);
+            MedicoDAO.excluirMedico(WIDTH);
         }else {
             JOptionPane.showMessageDialog(
                     this,
-                    "Selecione a especialidade qe você deseja exculuir",
+                    "Selecione o medico que você deseja exculuir",
                     "Atenção",
                     JOptionPane.WARNING_MESSAGE);
                     
@@ -110,8 +111,8 @@ public class MedicoPanel extends javax.swing.JPanel {
            //OperacaoEnum.EDITAR();
         }else{
             JOptionPane.showMessageDialog(this,
-                "Por favor, selecione a especialidade que você deseja editar.",
-                "Especialidade",
+                "Por favor, selecione o medico que você deseja editar.",
+                "Medico",
                 JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_ButtonEditarActionPerformed
