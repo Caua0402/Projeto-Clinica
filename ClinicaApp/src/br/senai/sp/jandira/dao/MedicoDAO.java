@@ -1,6 +1,6 @@
 package br.senai.sp.jandira.dao;
 
-import br.senai.sp.jandira.dao.EspecialidadeDAO;
+import static br.senai.sp.jandira.dao.EspecialidadeDAO.getEspecialidade;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.PlanoSaude;
@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class MedicoDAO {
 
-    private final static String URL = "C:\\Users\\22282201\\Java\\SistemaDeAgendamento\\Medicos.txt";
-    private final static String URL_TEMP = "C:\\Users\\22282201\\Java\\SistemaDeAgendamento\\Medicos-temp.txt";
+    private final static String URL = "C:\\Users\\22282180\\Java\\Medico.txt";
+    private final static String URL_TEMP = "C:\\Users\\22282180\\Java\\Medico-temp.txt";
     private final static Path PATH = Paths.get(URL);
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
 
@@ -37,7 +37,7 @@ public class MedicoDAO {
 
     public static Medico getMedico(Integer codigo) {
         for (Medico e : medicos) {
-            if (codigo.equals(e.getCodigo())) {
+            if (e.getCodigo().equals(codigo)) {
                 return e;
             }
         }
@@ -108,7 +108,8 @@ public class MedicoDAO {
 
                 //Transformar os dados da linha em uma especialidade
                 String[] vetor = linha.split(";");
-
+                
+                
                 Medico e = new Medico(Integer.valueOf(vetor[0]), vetor[1], vetor[2], vetor[3], vetor[4], vetor[5], separarCodigos(linha));
 
                 //Guardar a especialidade em uma lista
@@ -126,6 +127,7 @@ public class MedicoDAO {
         }
 
     }
+    
 
     public static DefaultListModel<Especialidade> getEspModel() {
 
@@ -182,6 +184,7 @@ public class MedicoDAO {
     }
 
     public static void gravar(Medico e) {
+        
         medicos.add(e);
 
         //GRAVAR ARQUIVO

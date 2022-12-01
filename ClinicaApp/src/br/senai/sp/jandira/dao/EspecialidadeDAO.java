@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,8 +20,10 @@ public class EspecialidadeDAO {
     private static final String URL_TEMP = "C:\\Users\\22282180\\Java\\Especialidade-temp.txt";
     private static final Path PATH = Paths.get(URL);
     private static final Path PATH_TEMP = Paths.get(URL_TEMP);
-
+           
+    
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    private static ArrayList<String> especialidadeNomes = new ArrayList<>();
 
     public static ArrayList<Especialidade> getEspecialidade() {
         return especialidades;
@@ -28,7 +31,7 @@ public class EspecialidadeDAO {
 
     public static Especialidade getEspecialidade(Integer codigo) {
         for (Especialidade e : especialidades) {
-            if (codigo == e.getCodigo()) {
+            if (e.getCodigo().equals(codigo)) {
                 return e;
             }
         }
@@ -153,6 +156,8 @@ public class EspecialidadeDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro no arquivo");
         }
+        
+        
 
 //        Especialidade e1 = new Especialidade("Fisioterapia", "Ajuda você com seus musculos");
 //        Especialidade e2 = new Especialidade("Cardiologia", "Cardiologia é a especialidade médica que se ocupa do diagnóstico e tratamento das doenças que acometem o coração bem como os outros componentes do sistema circulatório.");
@@ -163,6 +168,14 @@ public class EspecialidadeDAO {
 //        especialidades.add(e2);
 //        especialidades.add(e3);
 //        especialidades.add(e4);
+    }
+    
+    public static DefaultListModel<Especialidade> getEspModel(){
+        DefaultListModel<Especialidade> especialidadeLista = new DefaultListModel<Especialidade>();
+        for (Especialidade percorrer : getEspecialidade()){
+            especialidadeLista.addElement(percorrer);
+        }
+        return especialidadeLista;
     }
 
     public static DefaultTableModel getEspecialidadeModel() {
@@ -184,5 +197,7 @@ public class EspecialidadeDAO {
         return model;
 
     }
+    
+    
 
 }

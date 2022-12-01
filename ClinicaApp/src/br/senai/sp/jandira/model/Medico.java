@@ -18,6 +18,7 @@ public class Medico {
         this.telefone = telefone;
         this.email = email;
         this.dataFormatada = dataNascimento;
+        this.especialidades = especialidades;
         this.contador = codigo;
 
     }
@@ -111,16 +112,20 @@ public class Medico {
         this.crm = crm;
     }
 
-    public String arrayParaString(ArrayList<Especialidade> array) {
+    public String arraString(ArrayList<Especialidade> array) {
         ArrayList<String> codigos = new ArrayList<String>();
         for(Especialidade e : array){
             codigos.add(e.getCodigo().toString());
         }
         
         return String.join(";", codigos);
+        
     }
+    
 
     public String getSerializacao() {
+        
+        System.out.println(getEspecialidade());
 
         return this.codigo + ";"
                 + this.crm + ";"
@@ -128,7 +133,7 @@ public class Medico {
                 + this.telefone + ";"
                 + this.email + ";"
                 + this.dataFormatada + ";"
-                + arrayParaString(this.especialidades);
+                + arraString(this.especialidades);
     }
 
 }
